@@ -59,8 +59,12 @@ const SignUp = () => {
   const handleFileUpload = async (e) => {
       let base64 = ""
       const file = e.target.files[0];
+      if(!file){
+        return setNewUser({...newUser, image: base64 });
+      }
       base64 = await convertToBase64(file);
-      setNewUser({...newUser, photo: base64 });
+      setNewUser({...newUser, image: base64 });
+      console.log(newUser)
   }
 
   return (
@@ -71,31 +75,32 @@ const SignUp = () => {
         <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
             <Card className="px-4 shadow">
-              <Card.Body>
-                        
+              <Card.Body>       
                 <div className="mb-3 mt-md-4">
-                {newUser.image !== '' && <div>
-                <img onClick={handleFileUpload} 
+                <img
                       alt='img'
-                      src={newUser.image}
-                      width="50px"
-                      height="50px"
+                      src={newUser.image? newUser.image
+                        :'images/user.jpg'}
+                      width="70px"
+                      height="70px" 
                       className="  shadow-sm rounded-circle align-self-center mt-0 mb-4  "
                   />
-                </div>}
-                {newUser.image == '' &&<div><img 
-                      onClick={handleFileUpload}
-                      alt='img'
-                      src='images/user.jpg'
-                      width="50px"
-                      height="50px" 
-                      className="  shadow-sm rounded-circle align-self-center mt-0 mb-4  "
-                  />
-                  </div>}
                   <div className="mb-3">
 
                     <Form onSubmit={handleSubmit}>
                     
+                    <Form.Group className="mb-3" controlId="Name">
+                        <Form.Label className="text-center">
+                          Profilepic
+                        </Form.Label>
+                            <Form.Control   type="file" 
+                                            accept=".jpeg, .png, .jpg"
+                                            name="image"
+                                            style={{display:"none"}}
+                                            onChange={e =>{handleFileUpload(e)}}/>
+                      </Form.Group>
+
+
                       <Form.Group className="mb-3" controlId="Name">
                         <Form.Label className="text-center">User Name</Form.Label>
                         <Form.Control type="text" placeholder="Enter Name" className='shadow border-0'
