@@ -10,12 +10,14 @@ const SignUp = () => {
   const [newUser , setNewUser] = useState({
     name: '',
     password:'',
+    confrimpassword:'',
     address:'',
     image:'',
   });
 
   const navigate = useNavigate()
 
+  const [pass,setPass] = useState(false);
   const [error,setError] = useState(false);
   const [errorM,setErrorM] = useState(undefined);
 
@@ -65,7 +67,21 @@ const SignUp = () => {
       base64 = await convertToBase64(file);
       setNewUser({...newUser, image: base64 });
       console.log(newUser)
+
+    }
+
+
+  const checkPassword = async (e) => {
+    let pass = e.target.confirmpassword
+    console.log(newUser.password)
+    if(pass !== newUser.password){
+        setPass(false)
+    }else if(pass == newUser.password){
+        console.log("yes")
+        setPass(true)
+    }
   }
+//   console.log(pass)
 
   return (
     
@@ -83,7 +99,7 @@ const SignUp = () => {
                         :'images/user.jpg'}
                       width="70px"
                       height="70px" 
-                      className="  shadow-sm rounded-circle align-self-center mt-0 mb-4  "
+                      className="  shadow-sm rounded-circle shadow border-0 border-2 align-self-center mt-0 mb-4  "
                   />
                   <div className="mb-3">
 
@@ -126,20 +142,22 @@ const SignUp = () => {
                         <Form.Control type="password" placeholder="Password" className='shadow border-0'
                         onChange={handleChange} name="password" value={newUser.password} />
                       </Form.Group>
-                      {/* <Form.Group
+                      
+                      <Form.Group
                         className="mb-3"
-                        controlId="formBasicPassword"
-                      >
+                        controlId="formBasicPassword">
                         <Form.Label>Confirm Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
-                      </Form.Group> */}
+                        <Form.Control type="password" placeholder="Confirm Password" className='shadow border-0'
+                        onChange={e =>{checkPassword(e)}} value="confirmpassword"/>
+                      </Form.Group>
+                      
                       <Form.Group
                         className="mb-3"
                         controlId="formBasicCheckbox"
                       ></Form.Group>
                       <div className="d-grid">
-                      <Button style={{"background-color":"green" , border:0}} type="submit">
-                          Login
+                      <Button disabled={!pass} style={{"background-color":"green" , border:0}} type="submit">
+                          Sign up
                         </Button>
                        {/*  <Button variant="primary" type="submit" onClick={handlesubmit()}>
                           Create Account
