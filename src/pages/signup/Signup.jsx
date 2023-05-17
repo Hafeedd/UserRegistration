@@ -89,15 +89,19 @@ const SignUp = () => {
 
                     <Form onSubmit={handleSubmit}>
                     
-                    <Form.Group className="mb-3" controlId="Name">
+                      <Form.Group className="mb-3" controlId="Name">
                         <Form.Label className="text-center">
-                          Profilepic
+                          Profilepic : <img alt='img'
+                      src='images/upload.png'
+                      width="30px"
+                      height="30px"  ></img>
                         </Form.Label>
-                            <Form.Control   type="file" 
-                                            accept=".jpeg, .png, .jpg"
-                                            name="image"
-                                            style={{display:"none"}}
-                                            onChange={e =>{handleFileUpload(e)}}/>
+                        <Form.Control   
+                        type="file" 
+                        accept=".jpeg, .png, .jpg"
+                        name="image"
+                        style={{display:"none"}}
+                        onChange={e =>{handleFileUpload(e)}}/>
                       </Form.Group>
 
 
