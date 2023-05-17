@@ -32,9 +32,9 @@ export const Login = () => {
       const data = CryptoJS.AES.decrypt(users,key);
       var token = JSON.parse(data.toString(CryptoJS.enc.Utf8));
       if( token.type.isUser ){
-      navigate("/profile")}
+      navigate("/user")}
         else{
-          navigate("/profile")
+          navigate("/user")
         }
     }catch (err) {
         console.log(err)
