@@ -15,7 +15,7 @@ const SignUp = () => {
     image:'',
   });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [error,setError] = useState(false);
   const [errorM,setErrorM] = useState(undefined);
@@ -27,7 +27,7 @@ const SignUp = () => {
       username:newUser.name,
       address:newUser.address,
       password:newUser.password,
-      image:newUser.image
+      image:newUser.image 
     })
       navigate("/login")
       console.log(res)

@@ -14,12 +14,11 @@ import useFetch from '../../useFetch/useFetch';
 
 const Profile = () => {
 const {user,key} = useContext(AuthContext)
-console.log(key)
     if(user != null){
       const data = CryptoJS.AES.decrypt(user,key);
       var token = JSON.parse(data.toString(CryptoJS.enc.Utf8));
       var id = token.id
-    }
+    };
 
 const {datas,error,loading} = useFetch(`http://localhost:8800/api/auth/getUser/${id}`)
 console.log(datas)
