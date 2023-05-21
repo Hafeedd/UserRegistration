@@ -1,6 +1,6 @@
 import axios from 'axios';
+import "./login.css"
 import React, { useContext, useState } from 'react'
-import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import { Link , useNavigate } from "react-router-dom";
 import { AuthContext } from '../../context/AuthContext';
 import CryptoJS  from 'crypto-js';
@@ -47,66 +47,20 @@ export const Login = () => {
     }
 
   return (
-
-    <div>
-      <Container>
-        <Row  className="vh-100 d-flex justify-content-center align-items-center border-2 ">
-          <Col md={8} lg={6} xs={12}>
-            <Card className=" shadow-lg border-5 border-top ">
-              <Card.Body>
-                <div className="mb-3 mt-md-4 align-items-center">
-                  <div className=' align-items-center'>
-                  </div>
-                  <div className="mb-3">
-                    <Form onSubmit={handleSubmit}>
-                      <Form.Group className="mb-3" controlId="Name">
-                        <Form.Label className="text-center">
-                          Name
-                        </Form.Label>
-                        <Form.Control type="text" placeholder="Enter name"  className='shadow border-0'
-                        onChange={handleChange} name="name" value={newlogin.name}/>
-                      </Form.Group>
-
-                      <Form.Group
-                        className="mb-3"
-                        controlId="formBasicPassword"
-                      >
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" className='shadow border-0'
-                        onChange={handleChange} name="password" value={newlogin.password}/>
-                      </Form.Group>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="formBasicCheckbox"
-                      >
-                        <p className="small">
-                          <a className="text-primary" href="#!">
-                            Forgot password?
-                          </a>
-                        </p>
-                      </Form.Group>
-                      <div className="d-grid">
-                        <Button style={{"background-color":"green" , border:0}} type="submit">
-                          Login
-                        </Button>
-                      </div>
-                    </Form>
-                    <div>{error && <span>{error.message}</span>}</div>
-                    <div className="mt-3">
-                      <p className="mb-0  text-center">
-                        Don't have an account?{" "}
-                        <Link to="/signup">Sign up</Link>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-
+    <div className="loginContainer">
+      <div className="loginContainer2">
+        <div className="simpleContainer">
+        <img src='/images/user.jpg' className="imageContainer"/>
+        <form action="POST" className="loginForm">
+        <p className="loginText">Login</p>
+            <input type="text" className="userInput" onChange={e=>{handleChange(e)}}/>
+            <input type="password" className="userInput" onChange={e=>{handleChange(e)}}/>
+          <input type="button" onClick={e=>{handleSubmit(e)}} value="Login" className="loginButton"/>
+        </form>
+        </div>
+      </div>
     </div>
   )
 }
-export default Login
+
+export default Login;
